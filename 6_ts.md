@@ -335,3 +335,92 @@ enum MixedEnum {
 console.log(MixedEnum.No); // 0
 console.log(MixedEnum.Yes); // YES
 ```
+
+Определение Enum и интерфейса пользователя
+
+```ts
+enum Role {
+  Admin = "ADMIN",
+  User = "USER",
+  Guest = "GUEST"
+}
+
+interface User {
+  id: number;
+  name: string;
+  role: Role;
+}
+```
+
+Создание пользователей с использованием Enum
+```ts
+const adminUser: User = {
+  id: 1,
+  name: "Alice",
+  role: Role.Admin
+};
+
+const regularUser: User = {
+  id: 2,
+  name: "Bob",
+  role: Role.User
+};
+
+const guestUser: User = {
+  id: 3,
+  name: "Charlie",
+  role: Role.Guest
+};
+```
+Функция проверки доступа
+```ts
+function checkAccess(user: User) {
+  if (user.role === Role.Admin) {
+    console.log("Access granted.");
+  } else {
+    console.log("Access denied.");
+  }
+}
+
+checkAccess(adminUser); // Access granted.
+checkAccess(regularUser); // Access denied.
+checkAccess(guestUser); // Access denied.
+```
+Пример использования Enum в типах для ограничения значений
+Вы можете использовать перечисления для создания функций, которые принимают только определенные значения, тем самым обеспечивая типобезопасность.
+```ts
+enum Status {
+  Active = "ACTIVE",
+  Inactive = "INACTIVE",
+  Suspended = "SUSPENDED"
+}
+
+interface Account {
+  id: number;
+  owner: string;
+  status: Status;
+}
+
+const account1: Account = {
+  id: 101,
+  owner: "David",
+  status: Status.Active
+};
+
+const account2: Account = {
+  id: 102,
+  owner: "Eva",
+  status: Status.Inactive
+};
+
+function updateAccountStatus(account: Account, newStatus: Status): Account {
+  account.status = newStatus;
+  return account;
+}
+
+updateAccountStatus(account1, Status.Suspended);
+console.log(account1.status); // SUSPENDED
+
+updateAccountStatus(account2, Status.Active);
+console.log(account2.status); // ACTIVE
+```
