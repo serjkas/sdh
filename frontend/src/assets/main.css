@@ -1,0 +1,21 @@
+@import "./reset.css";
+
+/* Подключение шрифта */
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Применение шрифта ко всем элементам */
+body {
+  font-family: "Roboto", sans-serif;
+}
